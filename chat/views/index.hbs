@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Chat Demo</title>
+	<link href="http://fonts.googleapis.com/css?family=Pacifico&subset=latin" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="/public/css/build.css"/>
+</head>
+<body>
+<div class="container">
+	<h1>Chat Server</h1>
+
+	<h3>Join: <a href="{{url}}">{{url}}</a></h3>
+
+	<form name="chat">
+		<div class="row" id="name_row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="name_input">What is your name?</label>
+					<input name="name_input" id="name_input" type="text" class="form-control"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="row hide" id="chat_row">
+			<div class="col-md-6">
+				<h4>Conversation</h4>
+
+				<div id="conversation_items"></div>
+
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="chat_input">What's on your mind?</label>
+					<input name="chat_input" id="chat_input" type="text" class="form-control"/>
+				</div>
+
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	var app = {};
+	app.url = '{{url}}';
+</script>
+<script src="public/js/build.js"></script>
+
+</body>
+</html>
+

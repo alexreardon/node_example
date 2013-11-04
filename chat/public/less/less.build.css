@@ -1,0 +1,14 @@
+h1 {
+  font-family: 'Pacifico', sans-serif;
+}
+h3 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+#conversation_items {
+  overflow-y: scroll;
+  height: 200px;
+}
+#conversation_items p {
+  margin-bottom: 6px;
+}

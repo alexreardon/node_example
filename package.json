@@ -1,0 +1,32 @@
+{
+  "name": "node_example",
+  "version": "0.0.0",
+  "description": "introductory examples for node.js",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexreardon/node_example.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Reardon <alexreardon@gmail.com>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~3.4.3",
+    "request": "~2.27.0",
+    "socket.io": "~0.9.16",
+    "hbs": "~2.4.0",
+    "my-local-ip": "~1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-nodemon": "~0.1.1",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-less": "~0.8.1"
+  }
+}
