@@ -1,10 +1,11 @@
 var net = require('net'),
 	format = require('util').format,
+	eol = require('os').EOL,
 	port = 5000;
 
 var sockets = [];
 
-function broadcast (sender, message) {
+function broadcast(sender, message) {
 	sockets.forEach(function (client) {
 
 		// don't send the message to yourself!
@@ -14,26 +15,44 @@ function broadcast (sender, message) {
 	});
 }
 
-function join_chat (client) {
+function join_chat(client) {
+
 	client.setEncoding('utf8');
+
 	client.message_buffer = '';
 	client.name = 'client' + (sockets.length + 1);
 
 	sockets.push(client);
 
-	client.write('Welcome to the chat\r\n');
+	// server log
+	console.log('client joined!');
+	console.log('amount of clients', sockets.length);
 
-	broadcast(client, 'joined the chat!\r\n');
+	// communication
+	client.write('Welcome to the chat' + eol);
+	broadcast(client, 'joined the chat!' + eol);
 
+	// send data to sockets when eol is found
 	client.on('data', function (data) {
 
 		client.message_buffer += data;
 
-		if (data === '\r\n') {
+		if (data === eol) {
 			broadcast(client, client.message_buffer);
 			client.message_buffer = '';
 		}
 
+	});
+
+	client.on('end', function () {
+		console.log('client left!');
+
+		// remove the socket from array
+		sockets.splice(sockets.indexOf(client), 1);
+
+		console.log('amount of clients', sockets.length);
+
+		broadcast(client, 'left the chat' + eol);
 	});
 }
 
