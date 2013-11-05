@@ -26,7 +26,7 @@ node .\general\static.js .\presentation
 
 ## Examples
 
-Generally the following examples can be excuted by the following:
+Generally the following examples can be executed by the following:
 
 ```
 node [filename] // '.js' is optional
@@ -46,9 +46,10 @@ node [filename] // '.js' is optional
 * **nonblocking.js** - shows off node non-blocking i/o. Writes to files and serves HTML requests
 * **static.js** - turn any directory into a static webserver with directory listing.
 
-### Tcp
+### Chat (TCP)
 
 * **chat.js** - TCP chat server
+
 To run locally:
 
 ```
@@ -61,9 +62,19 @@ Windows telnet:
 open localhost 5000
 ```
 
-### Chat
+### Chat (HTTP with sockets)
 
 * **app.js** - chat http server that uses sockets
+
+This is a fully featured node application. It contains a grunt file and mocha tests
+
+To run:
+
+```
+cd chat
+npm install
+grunt dev run --force
+```
 
 ## Further Reading and examples
 

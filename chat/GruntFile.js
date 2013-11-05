@@ -1,23 +1,26 @@
 module.exports = function (grunt) {
 
 	var node_js_files = [
-			'chat/app.js'
+			'**/*.js',
+			'!node_modules/**/*.js',
+			'!public/**/*.js',
+			'!test/client/**/*.js'
 		],
 		client_js_files = [
-			'chat/public/js/app.js'
+			'public/js/app.js'
 		],
 		client_lib_files = [
-			'chat/public/js/lib/jquery.min.js',
-			'chat/public/js/lib/underscore.js',
-			'chat/public/js/lib/backbone.js',
-			'chat/public/js/lib/socket.io.js'
+			'public/js/lib/jquery.min.js',
+			'public/js/lib/underscore.js',
+			'public/js/lib/backbone.js',
+			'public/js/lib/socket.io.js'
 		],
 		less_files = [
-			'chat/public/less/style.less'
+			'public/less/style.less'
 		],
-		client_build_file = 'chat/public/js/build.js',
-		less_build_file = 'chat/public/less/less.build.css',
-		css_build_file = 'chat/public/css/build.css';
+		client_build_file = 'public/js/build.js',
+		less_build_file = 'public/less/less.build.css',
+		css_build_file = 'public/css/build.css';
 
 	// Project configuration.
 	grunt.initConfig({
@@ -25,13 +28,13 @@ module.exports = function (grunt) {
 
 		jshint: {
 			client: {
-				options: grunt.file.readJSON('chat/public/js/.jshintrc'),
+				options: grunt.file.readJSON('public/js/.jshintrc'),
 				files: {
 					src: client_js_files
 				}
 			},
 			node: {
-				options: grunt.file.readJSON('.jshintrc'),
+				options: grunt.file.readJSON('../.jshintrc'),
 				files: {
 					src: node_js_files
 				}
@@ -44,7 +47,7 @@ module.exports = function (grunt) {
 				dest: client_build_file
 			},
 			css: {
-				src: [ 'chat/public/css/bootstrap.min.css', less_build_file ],
+				src: [ 'public/css/bootstrap.min.css', less_build_file ],
 				dest: css_build_file
 			}
 		},
@@ -52,7 +55,7 @@ module.exports = function (grunt) {
 		less: {
 			dev: {
 				files: {
-					'chat/public/less/less.build.css': less_files
+					'public/less/less.build.css': less_files
 				}
 			}
 		},
@@ -72,9 +75,34 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// server side mocha tests
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec'
+				},
+				src: ['test/server/**/*.js']
+			}
+		},
+
+		// client side mocha tests
+		mocha: {
+			test1: {
+				src: [ 'test/client/runner.html' ],
+				options: {
+					//run: true,
+					log: true,
+					timeout: 10000
+				}
+
+			}
+		},
+
+
+		// run jobs again when files change
 		watch: {
 			node_js: {
-				tasks: ['jshint:node'],
+				tasks: ['jshint:node', 'mochaTest'],
 				files: node_js_files
 			},
 			client_js: {
@@ -87,6 +115,7 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// run tasks at the same time (nodemon takes a while to startup)
 		concurrent: {
 			target: {
 				tasks: ['nodemon', 'watch'],
@@ -96,10 +125,11 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// node server
 		nodemon: {
 			dev: {
 				options: {
-					file: 'chat/app.js',
+					file: 'server.js',
 					watchedExtensions: ['js', 'hbs']
 				}
 			}
@@ -115,8 +145,15 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-nodemon');
 	grunt.loadNpmTasks('grunt-concurrent');
 
+	// server side mocha
+	grunt.loadNpmTasks('grunt-mocha-test');
+
+	// client side mocha with phantomjs
+	grunt.loadNpmTasks('grunt-mocha');
+
 	//Development
 	grunt.registerTask('dev', ['jshint','less:dev', 'concat:js', 'concat:css']);
+	grunt.registerTask('test', ['dev', 'mochaTest', 'mocha']);
 	grunt.registerTask('run', ['concurrent:target']);
 
 	//Release

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Automated Tests</title>
+	<link rel="stylesheet" href="lib/mocha.css" />
+
+</head>
+<body>
+
+	<div id="mocha"></div>
+	<script src="lib/expect.js"></script>
+	<script src="lib/mocha.js"></script>
+	<script>mocha.setup('bdd');</script>
+
+	<script src="../../node_modules/grunt-mocha/phantomjs/bridge.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- application files -->
+	<script src="../../public/js/build.js"></script>
+
+	<!-- spec files -->
+	<script src="specs/app.js"></script>
+
+	<script>
+		//mocha.checkLeaks();
+		mocha.run();
+	</script>
+</body>
+</html>
