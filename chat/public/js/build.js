@@ -6741,7 +6741,8 @@ app.views.index = Backbone.View.extend({
 
 	initialize: function () {
 		// connect to server
-		this.socket = io.connect(app.url);
+		this.socket= {};
+		this.socket = io.connect(app.url || 'http://localhost:8080');
 		this.socket.on('text', this.on_socket_text.bind(this));
 
 		// chat box

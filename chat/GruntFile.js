@@ -86,18 +86,17 @@ module.exports = function (grunt) {
 		},
 
 		// client side mocha tests
+		// currently not working - not happy!
 		mocha: {
 			test1: {
 				src: [ 'test/client/runner.html' ],
 				options: {
-					//run: true,
-					log: true,
-					timeout: 10000
+					run: true,
+					log: true
 				}
 
 			}
 		},
-
 
 		// run jobs again when files change
 		watch: {

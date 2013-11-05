@@ -62,7 +62,7 @@ Windows telnet:
 open localhost 5000
 ```
 
-### Chat (HTTP with sockets)
+### Chat (HTTP with Sockets)
 
 * **app.js** - chat http server that uses sockets
 
@@ -76,7 +76,7 @@ npm install
 grunt dev run --force
 ```
 
-## Further Reading and examples
+## Further Reading and Examples
 
 * **fullon** - [personal project](https://github.com/alexreardon/fullon) for church camp. Uses express, mongodb (nosql database), handlebars, request, underscore and more!
 * **nodejs** - [home page](http://nodejs.org/about/)

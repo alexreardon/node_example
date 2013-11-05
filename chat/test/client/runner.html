@@ -7,22 +7,28 @@
 </head>
 <body>
 
-	<div id="mocha"></div>
-	<script src="lib/expect.js"></script>
-	<script src="lib/mocha.js"></script>
-	<script>mocha.setup('bdd');</script>
+<div id="mocha"></div>
 
-	<script src="../../node_modules/grunt-mocha/phantomjs/bridge.js" type="text/javascript" charset="utf-8"></script>
 
-	<!-- application files -->
-	<script src="../../public/js/build.js"></script>
+<script src="lib/mocha.js"></script>
+<script>mocha.setup('bdd');</script>
 
-	<!-- spec files -->
-	<script src="specs/app.js"></script>
+<script src="lib/expect.js"></script>
 
-	<script>
-		//mocha.checkLeaks();
+<!--<script src="../../node_modules/grunt-mocha/phantomjs/bridge.js" type="text/javascript" charset="utf-8"></script>-->
+
+<!-- application files -->
+<script src="../../public/js/build.js"></script>
+
+<!-- spec files -->
+<script src="specs/app.js"></script>
+
+<script>
+	if (navigator.userAgent.indexOf('PhantomJS') < 0) {
 		mocha.run();
-	</script>
+	} else {
+		console.log('phantom js running');
+	}
+</script>
 </body>
 </html>
