@@ -10,12 +10,15 @@ npm install
 ## Presentation
 
 The presentation can be run by:
+
 ```
 cd presentation
 npm install
 grunt serve
 ```
+
 OR use my static server
+
 ```
 node .\general\static.js .\presentation
 ```
@@ -23,6 +26,7 @@ node .\general\static.js .\presentation
 ## Examples
 
 Generally the following examples can be excuted by the following:
+
 ```
 node [filename] // '.js' is optional
 ```
@@ -45,10 +49,13 @@ node [filename] // '.js' is optional
 
 * **chat.js** - TCP chat server
 To run locally:
+
 ```
 node chat
 ```
+
 Windows telnet:
+
 ```
 open localhost 5000
 ```
