@@ -42,7 +42,7 @@
 	<h3>Introduction and Demystification</h3>
 
 	<p>
-		Source code: <a href="http://github.com/alexreardon/node_example">GitHub</a> / <a href="http://github.com/alexreardon/node_example">Stash</a>
+		Source code and examples: <a href="http://github.com/alexreardon/node_example">GitHub</a> / <a href="http://github.com/alexreardon/node_example">Stash</a>
 	</p>
 
 	<p>
@@ -50,6 +50,16 @@
 			(<a href="http://twitter.com/mralexreardon">@mralexreardon</a>)
 		</small>
 	</p>
+</section>
+
+<section>
+	<h2>Agenda</h2>
+	<ul>
+		<li>Caveats (my experience, not a magic bullet)</li>
+		<li>Node.js high level rationale</li>
+		<li>Code examples</li>
+		<li>How you can use node.js at work today</li>
+	</ul>
 </section>
 
 <section id="what_is_node">
@@ -74,6 +84,7 @@
 	<section>
 		<h2>Problem: Blocking  I/O</h2>
 		<pre><code data-trim contenteditable>
+//psudo code
 db.connect("connection_string");
 
 var result = db.execute("SELECT * FROM PEOPLE");
@@ -100,6 +111,7 @@ print(result);
 	<section>
 		<h2>Solution: Non-Blocking I/O</h2>
 		<pre><code data-trim contenteditable>
+//psudo code
 db.connect("connection_string", function (connection) {
 
 	connection.execute("SELECT * FROM PEOPLE", function (result) {
@@ -128,6 +140,10 @@ db.connect("connection_string", function (connection) {
 		<li>Can use familiar browser libraries (underscore, moment.js, mocha and so on)</li>
 		<li>Consistent programming language (could write full stack in js)</li>
 		<li>Lots of open source activity</li>
+		<ul>
+			<li><a href="https://github.com/joyent/node">Entire project</a> is open source</li>
+			<li>NPM (node package manager): 46,349 packages and growing</li>
+		</ul>
 
 	</ul>
 	</section>
@@ -138,14 +154,23 @@ db.connect("connection_string", function (connection) {
 			2 684 647 downloads in the last day <br />
 			28 318 940 downloads in the last week <br />
 			112 364 892 downloads in the last month <br />
-			- 4/11/13
+			<small>- npm packages downloaded 4/11/13</small>
 		</p>
 	</section>
 	<section>
 		<h2>Disadvantages</h2>
 		<ul>
-			<li>Relatively young (~3 years)</li>
+			<li>Relatively young (~3-5 years)</li>
 			<li>Loosely typed</li>
+			<ul>
+				<li>Issues with JavaScript rather than node</li>
+				<li>Mitigation strategies:</li>
+				<ul>
+					<li>Tests, TypeScript, clearly defined <strong>contracts</strong></li>
+					<li><a href="http://www.jshint.com/docs/options/">JsHint</a> rules (.jshint file) that hook into your IDE and or run as a build task (grunt)</li>
+					<li>Others</li>
+				</ul>
+			</ul>
 		</ul>
 	</section>
 

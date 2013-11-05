@@ -105,6 +105,8 @@ module.exports = function (grunt) {
 				files: node_js_files
 			},
 			client_js: {
+				// could add phantomjs mocha test here.
+				// only issue is that is that it could be slow
 				tasks: ['concat:js'],
 				files: client_lib_files.concat(client_js_files)
 			},
