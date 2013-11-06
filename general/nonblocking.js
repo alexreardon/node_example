@@ -1,12 +1,13 @@
+// CommonJS module pattern
 var http = require('http'),
 	format = require('util').format,
 	fs = require('fs'),
-	new_line = '\r\n',
+	eol = require('os').EOL,
 	log_file_name = './log.txt';
 
 // write text to a file
-function write (file_name, text) {
-	fs.appendFile(file_name, text + new_line, function () {
+function write(file_name, text) {
+	fs.appendFile(file_name, text + eol, function () {
 		console.log(format('%s written to "%s"', text, file_name));
 	});
 }
