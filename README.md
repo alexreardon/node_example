@@ -29,7 +29,7 @@ node .\general\static.js .\presentation
 Generally the following examples can be executed by the following:
 
 ```
-node [filename] // '.js' is optional
+node [filename] // '.js' file extension is optional
 ```
 
 ### Command Line
@@ -41,7 +41,7 @@ node [filename] // '.js' is optional
 
 ### General
 
-* **request.js** - periodically requests the temperature in sydney using an wheather api
+* **request.js** - periodically requests the temperature in sydney using a weather api
 * **server.js** - simple node.js server
 * **nonblocking.js** - shows off node non-blocking i/o. Writes to files and serves HTML requests
 * **static.js** - turn any directory into a static webserver with directory listing.
